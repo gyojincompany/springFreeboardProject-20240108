@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jbedu.board.command.FbWriteCommand;
 import com.jbedu.board.dao.FreeBoardDao;
 
 @Controller
@@ -33,9 +34,12 @@ public class FBoardController {
 		String fbname = request.getParameter("fbname");
 		String fbcontent = request.getParameter("fbcontent");
 		
-		FreeBoardDao freeBoardDao = new FreeBoardDao();
+		FbWriteCommand command = new FbWriteCommand();
+		command.execute(fbtitle, fbname, fbcontent);
 		
-		freeBoardDao.write(fbtitle, fbname, fbcontent);
+//		FreeBoardDao freeBoardDao = new FreeBoardDao();
+//		
+//		freeBoardDao.write(fbtitle, fbname, fbcontent);
 	
 		
 		return "write_form";
