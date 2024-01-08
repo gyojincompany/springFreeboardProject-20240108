@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jbedu.board.command.FbContentCommand;
 import com.jbedu.board.command.FbListCommand;
 import com.jbedu.board.command.FbWriteCommand;
 import com.jbedu.board.dao.FreeBoardDao;
@@ -53,6 +54,18 @@ public class FBoardController {
 		model.addAttribute("fboardDtos", dtos);
 		
 		return "list";
+	}
+	
+	@RequestMapping(value = "/content_view")
+	public String content_view(HttpServletRequest request, Model model) {
+		String fbnum = request.getParameter("fbnum");//클릭한 글번호
+		
+		FbContentCommand command = new FbContentCommand();
+		FboardDto fboardDto = command.execute(fbnum);
+		
+		model.addAttribute("fboardDto", fboardDto);
+		
+		return "content_view";
 	}
 	
 }
