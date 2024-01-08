@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,10 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jbedu.board.command.FbListCommand;
 import com.jbedu.board.command.FbWriteCommand;
 import com.jbedu.board.dao.FreeBoardDao;
+import com.jbedu.board.dto.FboardDto;
 
 @Controller
 public class FBoardController {
@@ -43,6 +47,17 @@ public class FBoardController {
 	
 		
 		return "write_form";
+	}
+	
+	@RequestMapping(value = "/list")
+	public String list(Model model ) {
+		
+		FbListCommand command = new FbListCommand();
+		ArrayList<FboardDto> dtos = command.execute();
+		
+		model.addAttribute("fboardDtos", dtos);
+		
+		return "list";
 	}
 	
 }
