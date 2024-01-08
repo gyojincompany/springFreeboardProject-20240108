@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,16 +17,18 @@
 			<th>작성자</th>
 			<th>등록일</th>
 			<th>조회수</th>
-		</tr>
+		</tr>		
 		
-		
+		<c:forEach items="${fboardDtos}" var="fboardDto">
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<td>${fboardDto.fbnum}</td>
+			<td>${fboardDto.fbtitle}</td>
+			<td>${fboardDto.fbname}</td>
+			<td>${fboardDto.fbdate}</td>
+			<td>${fboardDto.fbhit}</td>
 		</tr>
+		</c:forEach>
+		
 		
 	</table>
 </body>

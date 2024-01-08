@@ -41,12 +41,7 @@ public class FBoardController {
 		FbWriteCommand command = new FbWriteCommand();
 		command.execute(fbtitle, fbname, fbcontent);
 		
-//		FreeBoardDao freeBoardDao = new FreeBoardDao();
-//		
-//		freeBoardDao.write(fbtitle, fbname, fbcontent);
-	
-		
-		return "write_form";
+		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/list")

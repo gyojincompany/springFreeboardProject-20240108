@@ -74,8 +74,8 @@ public class FreeBoardDao {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM freeboard";
-			
+			String sql = "SELECT * FROM freeboard ORDER BY fbnum DESC";
+			// 내림차순으로 정렬된 모든 데이터 요청
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
