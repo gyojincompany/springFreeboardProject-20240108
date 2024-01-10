@@ -37,7 +37,7 @@
 		<tr>
 			<td colspan="2">
 				<input type="button" value="수 정" onclick="javascript:window.location.href='modify_form?fbnum=${fboardDto.fbnum}'">
-				<input type="button" value="삭 제" onclick="javascript:window.location.href='delete'">
+				<input type="button" value="삭 제" onclick="javascript:window.location.href='delete?fbnum=${fboardDto.fbnum}'">
 				<input type="button" value="글목록" onclick="javascript:window.location.href='list'">
 			</td>
 		</tr>

@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jbedu.board.command.FbContentCommand;
+import com.jbedu.board.command.FbDeleteCommand;
 import com.jbedu.board.command.FbListCommand;
 import com.jbedu.board.command.FbModifyCommand;
 import com.jbedu.board.command.FbWriteCommand;
@@ -92,6 +93,17 @@ public class FBoardController {
 		
 		FbModifyCommand command = new FbModifyCommand();
 		command.execute(fbtitle, fbname, fbcontent, fbnum);
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(HttpServletRequest request) {
+		
+		String fbnum = request.getParameter("fbnum");
+		
+		FbDeleteCommand command = new FbDeleteCommand();		
+		command.execute(fbnum);
 		
 		return "redirect:list";
 	}

@@ -220,4 +220,35 @@ public class FreeBoardDao {
 		}
 	}
 	
+	public void delete(String fbnum) {
+		Connection conn = null;		
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "DELETE FROM freeboard WHERE fbnum=?";
+			
+			pstmt = conn.prepareStatement(sql);	
+			
+			pstmt.setString(1, fbnum);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }
