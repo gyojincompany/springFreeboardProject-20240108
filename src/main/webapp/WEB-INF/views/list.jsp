@@ -8,7 +8,7 @@
 <title>자유게시판 글목록</title>
 </head>
 <body>
-	<h2>자유게시판 글목록</h2>
+	<a href="list"><h2>자유게시판 글목록</h2></a>
 	<hr>
 	<form action="search">
 		<input type="text" name="searchKey">
