@@ -29,20 +29,28 @@ public class FBoardController {
 	
 	//DataSource dataSource;
 	
+	@RequestMapping(value = "/")
+	public String index() {
+		return "redirect:list";
+	}
+	
 	@RequestMapping(value = "/write_form")
 	public String write_form() {
 		return "write_form";
 	}
 	
 	@RequestMapping(value = "/write")
-	public String write(HttpServletRequest request) {
+	public String write(HttpServletRequest request, Model model) {
 		
-		String fbtitle = request.getParameter("fbtitle");
-		String fbname = request.getParameter("fbname");
-		String fbcontent = request.getParameter("fbcontent");
+//		String fbtitle = request.getParameter("fbtitle");
+//		String fbname = request.getParameter("fbname");
+//		String fbcontent = request.getParameter("fbcontent");
+		
+		model.addAttribute("request", request);
 		
 		FbWriteCommand command = new FbWriteCommand();
-		command.execute(fbtitle, fbname, fbcontent);
+//		command.execute(fbtitle, fbname, fbcontent);
+		command.execute(model);
 		
 		return "redirect:list";
 	}
@@ -51,21 +59,25 @@ public class FBoardController {
 	public String list(Model model ) {
 		
 		FbListCommand command = new FbListCommand();
-		ArrayList<FboardDto> dtos = command.execute();
+//		ArrayList<FboardDto> dtos = command.execute();
+		command.execute(model);
 		
-		model.addAttribute("fboardDtos", dtos);
+//		model.addAttribute("fboardDtos", dtos);
 		
 		return "list";
 	}
 	
 	@RequestMapping(value = "/content_view")
 	public String content_view(HttpServletRequest request, Model model) {
-		String fbnum = request.getParameter("fbnum");//클릭한 글번호
+		
+		model.addAttribute("request", request);
+		
+//		String fbnum = request.getParameter("fbnum");//클릭한 글번호
 		
 		FbContentCommand command = new FbContentCommand();
-		FboardDto fboardDto = command.execute(fbnum);
+		command.execute(model);
 		
-		model.addAttribute("fboardDto", fboardDto);
+//		model.addAttribute("fboardDto", fboardDto);
 		
 		return "content_view";
 	}
@@ -73,37 +85,42 @@ public class FBoardController {
 	@RequestMapping(value = "modify_form")
 	public String modify_form(HttpServletRequest request, Model model) {
 		
-		String fbnum = request.getParameter("fbnum");//현재 보고 있는 (수정하려는) 글의 번호
+//		String fbnum = request.getParameter("fbnum");//현재 보고 있는 (수정하려는) 글의 번호
+		model.addAttribute("request", request);
 		
 		FbContentCommand command = new FbContentCommand();
-		FboardDto fboardDto = command.execute(fbnum);
+		command.execute(model);
 		
-		model.addAttribute("fboardDto", fboardDto);
+//		model.addAttribute("fboardDto", fboardDto);
 		
 		return "modify_form";
 	}
 	
 	@RequestMapping(value = "/modify")
-	public String modify(HttpServletRequest request) {
+	public String modify(HttpServletRequest request, Model model) {
 		
-		String fbnum = request.getParameter("fbnum");
-		String fbtitle = request.getParameter("fbtitle");
-		String fbname = request.getParameter("fbname");
-		String fbcontent = request.getParameter("fbcontent");
+		model.addAttribute("request", request);
+		
+//		String fbnum = request.getParameter("fbnum");
+//		String fbtitle = request.getParameter("fbtitle");
+//		String fbname = request.getParameter("fbname");
+//		String fbcontent = request.getParameter("fbcontent");
 		
 		FbModifyCommand command = new FbModifyCommand();
-		command.execute(fbtitle, fbname, fbcontent, fbnum);
+		command.execute(model);
 		
 		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/delete")
-	public String delete(HttpServletRequest request) {
+	public String delete(HttpServletRequest request, Model model) {
 		
-		String fbnum = request.getParameter("fbnum");
+		model.addAttribute("request", request);
+		
+		//String fbnum = request.getParameter("fbnum");
 		
 		FbDeleteCommand command = new FbDeleteCommand();		
-		command.execute(fbnum);
+		command.execute(model);
 		
 		return "redirect:list";
 	}
