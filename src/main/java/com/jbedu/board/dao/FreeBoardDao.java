@@ -126,6 +126,8 @@ public class FreeBoardDao {
 	
 	public FboardDto content_view(String clickNum) {
 		
+		upHit(clickNum);
+		
 		Connection conn = null; 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -312,6 +314,38 @@ public class FreeBoardDao {
 		}
 		
 		return dtos;
+	}
+	
+	public void upHit(String fbnum) {
+		
+		Connection conn = null;		
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "UPDATE freeboard SET fbhit=fbhit+1 WHERE fbnum=?";
+			
+			pstmt = conn.prepareStatement(sql);
+				
+			pstmt.setString(1, fbnum);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }
