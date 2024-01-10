@@ -68,4 +68,17 @@ public class FBoardController {
 		return "content_view";
 	}
 	
+	@RequestMapping(value = "modify_form")
+	public String modify_form(HttpServletRequest request, Model model) {
+		
+		String fbnum = request.getParameter("fbnum");//현재 보고 있는 (수정하려는) 글의 번호
+		
+		FbContentCommand command = new FbContentCommand();
+		FboardDto fboardDto = command.execute(fbnum);
+		
+		model.addAttribute("fboardDto", fboardDto);
+		
+		return "modify_form";
+	}
+	
 }

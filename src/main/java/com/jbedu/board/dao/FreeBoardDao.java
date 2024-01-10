@@ -80,7 +80,7 @@ public class FreeBoardDao {
 			
 			rs = pstmt.executeQuery();
 			
-			dtos = new ArrayList<FboardDto>();
+			//dtos = new ArrayList<FboardDto>();
 			
 			while(rs.next()) { // 다음 레코드가 있으면 참, 아니면 거짓
 				int fbnum = rs.getInt("fbnum");
@@ -151,7 +151,7 @@ public class FreeBoardDao {
 				int fbhit = rs.getInt("fbhit");
 				Timestamp fbdate = rs.getTimestamp("fbdate");
 				
-				fboardDto = new FboardDto(fbnum, fbname, fbtitle, fbcontent, fbhit, fbdate);
+				fboardDto = new FboardDto(fbnum, fbtitle, fbname, fbcontent, fbhit, fbdate);
 				
 //				fboardDto.setFbnum(fbnum);
 //				fboardDto.setFbname(fbname);
