@@ -21,6 +21,7 @@ import com.jbedu.board.command.FbContentCommand;
 import com.jbedu.board.command.FbDeleteCommand;
 import com.jbedu.board.command.FbListCommand;
 import com.jbedu.board.command.FbModifyCommand;
+import com.jbedu.board.command.FbSearchCommand;
 import com.jbedu.board.command.FbWriteCommand;
 import com.jbedu.board.dao.FreeBoardDao;
 import com.jbedu.board.dto.FboardDto;
@@ -125,6 +126,16 @@ public class FBoardController {
 		command.execute(model);
 		
 		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/search")
+	public String search(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		
+		command = new FbSearchCommand();
+		command.execute(model);
+		
+		return "list";
 	}
 	
 }
