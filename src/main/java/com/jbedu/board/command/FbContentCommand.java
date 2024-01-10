@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import com.jbedu.board.dao.FreeBoardDao;
 import com.jbedu.board.dto.FboardDto;
 
-public class FbContentCommand {
+public class FbContentCommand implements FbCommand{
 	
 	public void execute(Model model) {
 		

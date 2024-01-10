@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import com.jbedu.board.dao.FreeBoardDao;
 
-public class FbWriteCommand {
+public class FbWriteCommand implements FbCommand{
 	
 //	public void execute(String fbtitle, String fbname, String fbcontent) {
 //		

@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import com.jbedu.board.dao.FreeBoardDao;
 
-public class FbDeleteCommand {
+public class FbDeleteCommand implements FbCommand {
 	
 	public void execute(Model model) {
 		

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jbedu.board.command.FbCommand;
 import com.jbedu.board.command.FbContentCommand;
 import com.jbedu.board.command.FbDeleteCommand;
 import com.jbedu.board.command.FbListCommand;
@@ -28,6 +29,7 @@ import com.jbedu.board.dto.FboardDto;
 public class FBoardController {
 	
 	//DataSource dataSource;
+	FbCommand command = null;
 	
 	@RequestMapping(value = "/")
 	public String index() {
@@ -48,7 +50,7 @@ public class FBoardController {
 		
 		model.addAttribute("request", request);
 		
-		FbWriteCommand command = new FbWriteCommand();
+		command = new FbWriteCommand();
 //		command.execute(fbtitle, fbname, fbcontent);
 		command.execute(model);
 		
@@ -58,7 +60,7 @@ public class FBoardController {
 	@RequestMapping(value = "/list")
 	public String list(Model model ) {
 		
-		FbListCommand command = new FbListCommand();
+		command = new FbListCommand();
 //		ArrayList<FboardDto> dtos = command.execute();
 		command.execute(model);
 		
@@ -74,7 +76,7 @@ public class FBoardController {
 		
 //		String fbnum = request.getParameter("fbnum");//클릭한 글번호
 		
-		FbContentCommand command = new FbContentCommand();
+		command = new FbContentCommand();
 		command.execute(model);
 		
 //		model.addAttribute("fboardDto", fboardDto);
@@ -88,7 +90,7 @@ public class FBoardController {
 //		String fbnum = request.getParameter("fbnum");//현재 보고 있는 (수정하려는) 글의 번호
 		model.addAttribute("request", request);
 		
-		FbContentCommand command = new FbContentCommand();
+		command = new FbContentCommand();
 		command.execute(model);
 		
 //		model.addAttribute("fboardDto", fboardDto);
@@ -106,7 +108,7 @@ public class FBoardController {
 //		String fbname = request.getParameter("fbname");
 //		String fbcontent = request.getParameter("fbcontent");
 		
-		FbModifyCommand command = new FbModifyCommand();
+		command = new FbModifyCommand();
 		command.execute(model);
 		
 		return "redirect:list";
@@ -119,7 +121,7 @@ public class FBoardController {
 		
 		//String fbnum = request.getParameter("fbnum");
 		
-		FbDeleteCommand command = new FbDeleteCommand();		
+		command = new FbDeleteCommand();		
 		command.execute(model);
 		
 		return "redirect:list";

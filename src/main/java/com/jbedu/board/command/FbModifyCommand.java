@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 import com.jbedu.board.dao.FreeBoardDao;
 
-public class FbModifyCommand {
+public class FbModifyCommand implements FbCommand{
 	public void execute(Model model) {
 		
 		Map<String, Object> requestMap = model.asMap();
