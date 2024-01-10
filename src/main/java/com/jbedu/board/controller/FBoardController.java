@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jbedu.board.command.FbContentCommand;
 import com.jbedu.board.command.FbListCommand;
+import com.jbedu.board.command.FbModifyCommand;
 import com.jbedu.board.command.FbWriteCommand;
 import com.jbedu.board.dao.FreeBoardDao;
 import com.jbedu.board.dto.FboardDto;
@@ -79,6 +80,20 @@ public class FBoardController {
 		model.addAttribute("fboardDto", fboardDto);
 		
 		return "modify_form";
+	}
+	
+	@RequestMapping(value = "/modify")
+	public String modify(HttpServletRequest request) {
+		
+		String fbnum = request.getParameter("fbnum");
+		String fbtitle = request.getParameter("fbtitle");
+		String fbname = request.getParameter("fbname");
+		String fbcontent = request.getParameter("fbcontent");
+		
+		FbModifyCommand command = new FbModifyCommand();
+		command.execute(fbtitle, fbname, fbcontent, fbnum);
+		
+		return "redirect:list";
 	}
 	
 }

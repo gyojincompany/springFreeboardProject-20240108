@@ -185,4 +185,39 @@ public class FreeBoardDao {
 		return fboardDto;
 	}
 	
+	public void modify(String fbtitle, String fbname, String fbcontent, String fbnum) {
+		Connection conn = null;
+		// Statement stmt = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "UPDATE freeboard SET fbtitle=?, fbname=?, fbcontent=? WHERE fbnum=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, fbtitle);
+			pstmt.setString(2, fbname);
+			pstmt.setString(3, fbcontent);		
+			pstmt.setString(4, fbnum);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }

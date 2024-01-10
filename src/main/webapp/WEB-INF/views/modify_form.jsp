@@ -11,18 +11,25 @@
 	<hr>
 	<table border="1" cellspacing="0" cellpadding="0" width="600">
 		<form action="modify">
+		<!-- 
+		<tr>
+			<td>번 호</td>
+			<td><input type="text" name="fbnum" size="60" value="${fboardDto.fbnum }" readonly="readonly"></td>
+		</tr>
+		 -->
+		<input type="hidden" name="fbnum" size="60" value="${fboardDto.fbnum }">
 		<tr>
 			<td>제 목</td>
-			<td><input type="text" name="fbtitle" size="60" value="${ }"></td>
+			<td><input type="text" name="fbtitle" size="60" value="${fboardDto.fbtitle }"></td>
 		</tr>
 		<tr>
 			<td>이 름</td>
-			<td><input type="text" name="fbname" size="60" value="${ }"></td>
+			<td><input type="text" name="fbname" size="60" value="${fboardDto.fbname }"></td>
 		</tr>
 		<tr>
 			<td>내 용</td>
 			<td>
-				<textarea rows="10" cols="50" name="fbcontent">${ }</textarea>
+				<textarea rows="10" cols="50" name="fbcontent">${fboardDto.fbcontent }</textarea>
 			</td>
 		</tr>
 		<tr>
